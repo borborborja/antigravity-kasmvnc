@@ -4,7 +4,7 @@
 services:
   antigravity:
     build: .
-    image: yourusername/antigravity-kasmvnc:latest
+    image: borborborja/antigravity-kasmvnc:latest
     container_name: antigravity
     environment:
       # User/Group IDs for file permissions

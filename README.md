@@ -1,7 +1,7 @@
 # Antigravity KasmVNC
 
-[![Docker Build](https://github.com/yourusername/antigravity-kasmvnc/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/yourusername/antigravity-kasmvnc/actions/workflows/docker-publish.yml)
-[![Docker Pulls](https://img.shields.io/docker/pulls/yourusername/antigravity-kasmvnc)](https://hub.docker.com/r/yourusername/antigravity-kasmvnc)
+[![Docker Build](https://github.com/borborborja/antigravity-kasmvnc/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/borborborja/antigravity-kasmvnc/actions/workflows/docker-publish.yml)
+[![Docker Pulls](https://img.shields.io/docker/pulls/borborborja/antigravity-kasmvnc)](https://hub.docker.com/r/borborborja/antigravity-kasmvnc)
 
 A Docker container running **Antigravity** in a web-accessible desktop environment using [LinuxServer.io's Webtop](https://github.com/linuxserver/docker-webtop) with KasmVNC.
 
@@ -27,7 +27,7 @@ docker run -d \
   -v ./config:/config \
   -v ./projects:/config/Projects \
   --shm-size=1gb \
-  yourusername/antigravity-kasmvnc:latest
+  borborborja/antigravity-kasmvnc:latest
 ```
 
 Then open http://localhost:3000 in your browser.
