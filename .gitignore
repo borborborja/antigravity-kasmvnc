@@ -1,0 +1,32 @@
+# Sensitive files
+config/ssl/
+*.key
+*.pem
+
+# User configuration
+config/.antigravity/
+config/.cache/
+config/.config/
+config/.local/
+config/.mozilla/
+config/.dbus/
+config/.gnupg/
+config/.pki/
+config/.XDG/
+config/Desktop/
+config/Downloads/
+config/.ICEauthority
+config/.Xresources
+config/.bash_history
+config/.bashrc
+
+# Docker Compose with secrets (use docker-compose.example.yaml)
+compose.yaml
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

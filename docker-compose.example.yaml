@@ -1,0 +1,40 @@
+# Antigravity KasmVNC - Docker Compose Example
+# Copy this file to docker-compose.yaml and customize
+
+services:
+  antigravity:
+    build: .
+    image: yourusername/antigravity-kasmvnc:latest
+    container_name: antigravity
+    environment:
+      # User/Group IDs for file permissions
+      - PUID=1000
+      - PGID=1000
+      # Timezone
+      - TZ=Europe/London
+      # Browser tab title
+      - TITLE=Antigravity
+      # Login credentials
+      - CUSTOM_USER=admin
+      - PASSWORD=changeme
+      # Extra arguments for Antigravity (optional)
+      # Example: --force-device-scale-factor=1.5
+      - ANTIGRAVITY_ARGS=
+    volumes:
+      # Main configuration
+      - ./config:/config
+      # Antigravity projects
+      - ./projects:/config/Projects
+      # Antigravity extensions
+      - ./extensions:/config/.antigravity
+    ports:
+      # Web interface - access at http://localhost:3000
+      - "127.0.0.1:3000:3000"
+    restart: unless-stopped
+    # Required for browser stability
+    shm_size: 1gb
+    deploy:
+      resources:
+        limits:
+          memory: 2048M
+          cpus: "1.50"
