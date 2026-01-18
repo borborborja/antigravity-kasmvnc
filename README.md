@@ -1,9 +1,17 @@
 # Antigravity KasmVNC
 
 [![Docker Build](https://github.com/borborborja/antigravity-kasmvnc/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/borborborja/antigravity-kasmvnc/actions/workflows/docker-publish.yml)
-[![Docker Pulls](https://img.shields.io/docker/pulls/borborborja/antigravity-kasmvnc)](https://hub.docker.com/r/borborborja/antigravity-kasmvnc)
+[![Docker Pulls](https://img.shields.io/docker/pulls/borborbor/antigravity-kasmvnc)](https://hub.docker.com/r/borborbor/antigravity-kasmvnc)
 
 A Docker container running **Antigravity** in a web-accessible desktop environment using [LinuxServer.io's Webtop](https://github.com/linuxserver/docker-webtop) with KasmVNC.
+
+## Docker Hub
+
+**Pre-built image available:** [`borborbor/antigravity-kasmvnc`](https://hub.docker.com/r/borborbor/antigravity-kasmvnc)
+
+```bash
+docker pull borborbor/antigravity-kasmvnc:latest
+```
 
 ## Features
 
@@ -14,6 +22,8 @@ A Docker container running **Antigravity** in a web-accessible desktop environme
 - 💾 **Persistent Storage** - Projects and extensions persist across restarts
 
 ## Quick Start
+
+### Option 1: Use Pre-built Image (Recommended)
 
 ```bash
 docker run -d \
@@ -27,7 +37,16 @@ docker run -d \
   -v ./config:/config \
   -v ./projects:/config/Projects \
   --shm-size=1gb \
-  borborborja/antigravity-kasmvnc:latest
+  borborbor/antigravity-kasmvnc:latest
+```
+
+### Option 2: Build Locally
+
+```bash
+git clone https://github.com/borborborja/antigravity-kasmvnc.git
+cd antigravity-kasmvnc
+docker build -t antigravity-kasmvnc .
+docker run -d --name antigravity -p 3000:3000 -e PASSWORD=changeme --shm-size=1gb antigravity-kasmvnc
 ```
 
 Then open http://localhost:3000 in your browser.
@@ -72,12 +91,6 @@ mkdir -p ./config/ssl
 ```
 
 The container will automatically use HTTPS when certificates are present.
-
-## Building Locally
-
-```bash
-docker build -t antigravity-kasmvnc .
-```
 
 ## Resource Recommendations
 
