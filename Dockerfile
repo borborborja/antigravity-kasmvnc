@@ -9,21 +9,25 @@ RUN mkdir -p /etc/apt/keyrings && \
     curl -fsSL https://us-central1-apt.pkg.dev/doc/repo-signing-key.gpg | \
     gpg --dearmor --yes -o /etc/apt/keyrings/antigravity-repo-key.gpg && \
     echo "deb [signed-by=/etc/apt/keyrings/antigravity-repo-key.gpg] https://us-central1-apt.pkg.dev/projects/antigravity-auto-updater-dev/ antigravity-debian main" | \
-    tee /etc/apt/sources.list.d/antigravity.list > /dev/null
+    tee /etc/apt/sources.list.d/antigravity.list > /dev/null && \
+    curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | \
+    gpg --dearmor --yes -o /etc/apt/keyrings/google-chrome.gpg && \
+    echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | \
+    tee /etc/apt/sources.list.d/google-chrome.list > /dev/null
 
 # 2. Install initial version (base image)
 RUN apt-get update && \
-    apt-get install -y antigravity && \
+    apt-get install -y antigravity google-chrome-stable && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # 3. Configure automatic update script on container start
 RUN mkdir -p /custom-cont-init.d && \
     echo '#!/bin/bash' > /custom-cont-init.d/update-antigravity && \
-    echo 'echo "Checking for Antigravity updates..."' >> /custom-cont-init.d/update-antigravity && \
+    echo 'echo "Checking for Antigravity and Chrome updates..."' >> /custom-cont-init.d/update-antigravity && \
     echo 'apt-get update' >> /custom-cont-init.d/update-antigravity && \
-    echo 'DEBIAN_FRONTEND=noninteractive apt-get install -y --only-upgrade antigravity' >> /custom-cont-init.d/update-antigravity && \
-    echo 'echo "Antigravity update check complete."' >> /custom-cont-init.d/update-antigravity && \
+    echo 'DEBIAN_FRONTEND=noninteractive apt-get install -y --only-upgrade antigravity google-chrome-stable' >> /custom-cont-init.d/update-antigravity && \
+    echo 'echo "Update check complete."' >> /custom-cont-init.d/update-antigravity && \
     chmod +x /custom-cont-init.d/update-antigravity
 
 # 4. Create launcher script that accepts environment arguments
