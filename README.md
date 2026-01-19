@@ -16,6 +16,8 @@ docker pull borborbor/antigravity-kasmvnc:latest
 ## Features
 
 - 🖥️ **Web-based Desktop** - Access Antigravity through your browser via KasmVNC
+- ⚡ **Optimized Rendering** - Low minimum quality for high responsiveness even on slow connections
+- 📋 **Seamless Clipboard** - Automatic bidirectional clipboard sync (best in Chromium browsers)
 - 🔄 **Auto-updates** - Antigravity automatically updates on container restart
 - 🔒 **Secure Access** - Password-protected web interface with optional SSL
 - ⚙️ **Configurable** - Pass custom arguments to Antigravity via environment variables

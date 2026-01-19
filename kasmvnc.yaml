@@ -1,0 +1,31 @@
+# KasmVNC Configuration Optimized for Antigravity
+
+encoding:
+  # Enable dynamic quality to adjust to network conditions
+  rect_encoding_mode:
+    # Lower minimum quality to 0 as requested for better responsiveness on slow renders
+    min_quality: 0
+    max_quality: 9
+  # Target 60fps but allow dropping for performance
+  max_frame_rate: 60
+
+data_loss_prevention:
+  clipboard:
+    # Enable automatic bidirectional clipboard synchronization
+    server_to_client:
+      enabled: true
+    client_to_server:
+      enabled: true
+
+runtime_configuration:
+  # Allow users to further tweak settings from the side menu
+  allow_client_to_override_kasm_server_settings: true
+
+network:
+  # Default KasmVNC port
+  vnc_port: 5901
+  websocket_port: 3000
+  ssl:
+    # SSL is handled by the base image if certs are provided in /config/ssl
+    enabled: true
+    require_ssl: false

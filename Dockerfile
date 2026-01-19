@@ -31,6 +31,13 @@ RUN echo '#!/bin/bash' > /usr/local/bin/start-antigravity && \
     echo 'exec antigravity --no-sandbox $ANTIGRAVITY_ARGS' >> /usr/local/bin/start-antigravity && \
     chmod +x /usr/local/bin/start-antigravity
 
-# 5. Configure Openbox autostart
+# 5. Copy KasmVNC configuration for optimized rendering
+COPY kasmvnc.yaml /etc/kasmvnc/kasmvnc.yaml
+
+# 6. Set Antigravity icon as favicon for the web interface
+COPY google-antigravity-logo-icon-hd.png /kclient/public/favicon.ico
+COPY google-antigravity-logo-icon-hd.png /kclient/public/icon.png
+
+# 7. Configure Openbox autostart
 RUN mkdir -p /etc/xdg/openbox && \
     echo "start-antigravity &" >> /etc/xdg/openbox/autostart
